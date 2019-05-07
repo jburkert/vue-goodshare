@@ -80,48 +80,14 @@ export default {
       // Variables
       const width = 640;
       const height = 480;
-      const share_url = `https://www.xing.com/widgets/share/tool?canonicalUrl=${encodeURIComponent(
+      const share_url = `https://www.xing.com/spi/shares/new?url=${encodeURIComponent(
         this.$props.page_url
-      )}&title=${encodeURIComponent(
-        this.$props.page_title
-      )}&caption=${encodeURIComponent(
-        this.$props.page_description
-      )}&posttype=link`;
+      )}`;
 
       // onClick event
       clickEvent(this, "xing");
 
       return openPopUpWindow(share_url, width, height);
-    },
-
-    /**
-     * Get share counter.
-     *
-     * @return {object} a share counter
-     */
-    getShareCounter: function() {
-      // Variables
-      const script = document.createElement("script");
-      const callback = getCallbackName("vue_goodshare", 9999, 111);
-
-      // Create `script` tag with share count URL
-      script.src = `https://api.xing.com/v2/share/stats?url=${encodeURIComponent(
-        this.$props.page_url
-      )}&callback=${callback}`;
-
-      // Add `script` tag with share count URL
-      // to end of `body` tag
-      document.body.appendChild(script);
-
-      // Set share count to `counter_xing` v-model
-      window[callback] = count => {
-        if (count) {
-          this.counter_xing =
-            count.response.note_count >= 1000
-              ? sliceThousandInt(count.response.note_count)
-              : count.response.note_count;
-        }
-      };
     }
   },
   mounted() {
