@@ -135,8 +135,8 @@ export default {
 }
 
 // Colors
-$xing_main_color: rgb(53, 70, 92);
-$xing_main_color_opacity: rgba(53, 70, 92, 0.5);
+$xing_main_color: rgb(26, 117, 118);
+$xing_main_color_opacity: rgba(26, 117, 118, 0.5);
 $gradient_color: rgb(83, 100, 122);
 $background_white_color: rgb(254, 254, 254);
 $text_white_color: rgb(254, 254, 254);
