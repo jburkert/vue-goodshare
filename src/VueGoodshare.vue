@@ -1,11 +1,9 @@
 <template>
   <div>
-    <div v-if="this.$props.bundle === 'world'">
-      <vue-goodshare-facebook has_icon has_counter title_social="Facebook"/>
-      <vue-goodshare-linked-in has_icon has_counter title_social="LinkedIn"/>
-      <vue-goodshare-tumblr has_icon has_counter title_social="Tumblr"/>
-      <vue-goodshare-twitter has_icon title_social="Twitter"/>
-    </div>
+    <vue-goodshare-facebook has_icon/>
+    <vue-goodshare-linked-in has_icon/>
+    <vue-goodshare-tumblr has_icon/>
+    <vue-goodshare-twitter has_icon/>
   </div>
 </template>
 
@@ -18,12 +16,6 @@ import VueGoodshareTumblr from "./providers/Tumblr.vue";
 
 export default {
   name: "VueGoodshare",
-  props: {
-    bundle: {
-      type: String,
-      default: "world"
-    }
-  },
   components: {
     VueGoodshareFacebook,
     VueGoodshareLinkedIn,
