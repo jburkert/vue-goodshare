@@ -12,16 +12,16 @@
     :has-counter="has_counter"
     @click.prevent="showShareWindow"
   >
-    <i class="icon-tumblr" v-if="this.$props.has_icon"></i>
+    <i class="icon-xing" v-if="this.$props.has_icon"></i>
     <span class="title-social" v-if="this.$props.title_social">
       {{ title_social }}
     </span>
     <span
-      class="counter-tumblr"
-      v-model="counter_tumblr"
+      class="counter-xing"
+      v-model="counter_xing"
       v-if="this.$props.has_counter"
     >
-      {{ counter_tumblr }}
+      {{ counter_xing }}
     </span>
   </a>
 </template>
@@ -36,7 +36,7 @@ import { sliceThousandInt } from "../helpers/count_number";
 import { openPopUpWindow } from "../helpers/popup_window";
 
 export default {
-  name: "VueGoodshareTumblr",
+  name: "VueGoodshareXing",
   props: {
     page_url: {
       type: String,
@@ -63,11 +63,11 @@ export default {
     return {
       buttonSocialDesignObject: {
         "button-social__square_edges": this.$props.has_square_edges,
-        tumblr__design__flat: this.$props.button_design === "flat",
-        tumblr__design__gradient: this.$props.button_design === "gradient",
-        tumblr__design__outline: this.$props.button_design === "outline"
+        xing__design__flat: this.$props.button_design === "flat",
+        xing__design__gradient: this.$props.button_design === "gradient",
+        xing__design__outline: this.$props.button_design === "outline"
       },
-      counter_tumblr: 0
+      counter_xing: 0
     };
   },
   methods: {
@@ -80,7 +80,7 @@ export default {
       // Variables
       const width = 640;
       const height = 480;
-      const share_url = `https://www.tumblr.com/widgets/share/tool?canonicalUrl=${encodeURIComponent(
+      const share_url = `https://www.xing.com/widgets/share/tool?canonicalUrl=${encodeURIComponent(
         this.$props.page_url
       )}&title=${encodeURIComponent(
         this.$props.page_title
@@ -89,7 +89,7 @@ export default {
       )}&posttype=link`;
 
       // onClick event
-      clickEvent(this, "tumblr");
+      clickEvent(this, "xing");
 
       return openPopUpWindow(share_url, width, height);
     },
@@ -105,7 +105,7 @@ export default {
       const callback = getCallbackName("vue_goodshare", 9999, 111);
 
       // Create `script` tag with share count URL
-      script.src = `https://api.tumblr.com/v2/share/stats?url=${encodeURIComponent(
+      script.src = `https://api.xing.com/v2/share/stats?url=${encodeURIComponent(
         this.$props.page_url
       )}&callback=${callback}`;
 
@@ -113,10 +113,10 @@ export default {
       // to end of `body` tag
       document.body.appendChild(script);
 
-      // Set share count to `counter_tumblr` v-model
+      // Set share count to `counter_xing` v-model
       window[callback] = count => {
         if (count) {
-          this.counter_tumblr =
+          this.counter_xing =
             count.response.note_count >= 1000
               ? sliceThousandInt(count.response.note_count)
               : count.response.note_count;
@@ -164,13 +164,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-tumblr:before {
+.icon-xing:before {
   content: "\f168";
 }
 
 // Colors
-$tumblr_main_color: rgb(53, 70, 92);
-$tumblr_main_color_opacity: rgba(53, 70, 92, 0.5);
+$xing_main_color: rgb(53, 70, 92);
+$xing_main_color_opacity: rgba(53, 70, 92, 0.5);
 $gradient_color: rgb(83, 100, 122);
 $background_white_color: rgb(254, 254, 254);
 $text_white_color: rgb(254, 254, 254);
@@ -204,47 +204,47 @@ $text_white_color_opacity: rgba(254, 254, 254, 0.5);
   -webkit-border-radius: 0;
 }
 
-// Button tumblr style `flat`
-.tumblr__design__flat {
-  background-color: $tumblr_main_color;
+// Button xing style `flat`
+.xing__design__flat {
+  background-color: $xing_main_color;
   color: $text_white_color;
 }
 
-// Button tumblr style `gradient`
-.tumblr__design__gradient {
+// Button xing style `gradient`
+.xing__design__gradient {
   background-image: linear-gradient(
     to bottom,
-    $tumblr_main_color,
+    $xing_main_color,
     $gradient_color
   );
   background-image: -moz-linear-gradient(
     to bottom,
-    $tumblr_main_color,
+    $xing_main_color,
     $gradient_color
   );
   background-image: -o-linear-gradient(
     to bottom,
-    $tumblr_main_color,
+    $xing_main_color,
     $gradient_color
   );
   background-image: -webkit-linear-gradient(
     to bottom,
-    $tumblr_main_color,
+    $xing_main_color,
     $gradient_color
   );
   background-image: -ms-linear-gradient(
     to bottom,
-    $tumblr_main_color,
+    $xing_main_color,
     $gradient_color
   );
   color: $text_white_color;
 }
 
-// Button tumblr style `outline`
-.tumblr__design__outline {
+// Button xing style `outline`
+.xing__design__outline {
   background-color: $background_white_color;
-  border: 1px solid $tumblr_main_color;
-  color: $tumblr_main_color;
+  border: 1px solid $xing_main_color;
+  color: $xing_main_color;
 }
 
 // Title
@@ -253,17 +253,17 @@ $text_white_color_opacity: rgba(254, 254, 254, 0.5);
 }
 
 // Counter
-.counter-tumblr {
+.counter-xing {
   margin-left: 6px;
   padding-left: 6px;
 }
 
-.tumblr__design__flat .counter-tumblr,
-.tumblr__design__gradient .counter-tumblr {
+.xing__design__flat .counter-xing,
+.xing__design__gradient .counter-xing {
   border-left: 1px solid $text_white_color_opacity;
 }
 
-.tumblr__design__outline .counter-tumblr {
-  border-left: 1px solid $tumblr_main_color_opacity;
+.xing__design__outline .counter-xing {
+  border-left: 1px solid $xing_main_color_opacity;
 }
 </style>
