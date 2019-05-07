@@ -161,7 +161,7 @@ export default {
 }
 
 .icon-linkedin:before {
-  content: "\e808";
+  content: "\f0e1";
 }
 
 // Colors

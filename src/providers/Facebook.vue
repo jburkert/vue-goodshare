@@ -149,7 +149,7 @@ export default {
 }
 
 .icon-facebook:before {
-  content: "\e809";
+  content: "\f09a";
 }
 
 // Colors

@@ -109,7 +109,7 @@ export default {
 }
 
 .icon-twitter:before {
-  content: "\e801";
+  content: "\f099";
 }
 
 // Colors
